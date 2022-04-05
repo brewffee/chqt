@@ -1,0 +1,5 @@
+.vscode/**
+./out/**
+.qmake.stash
+main.o
+Makefile
