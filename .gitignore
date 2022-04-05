@@ -1,5 +1,5 @@
 .vscode/**
-./out/**
 .qmake.stash
 main.o
+chqt
 Makefile
