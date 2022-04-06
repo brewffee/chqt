@@ -75,9 +75,10 @@ int main(int argc, char *argv[]) {
     muted -> setForeground(QBrush(QColor(200, 200, 200)));
     blocked -> setForeground(QBrush(QColor(255, 0, 0)));
 
-    // my system's default font is Product Sans, need to
-    // find out how to use default font properties later
-    self -> setFont(QFont("Product Sans", 12, QFont::Bold));
+    QFont font;
+    font.setBold(true);
+
+    self -> setFont(font);
 
     std::array <QStandardItem *, 7> member_types = {op, moderator, member, buddy, muted, blocked, self};
 
