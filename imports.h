@@ -9,6 +9,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <QLineEdit>
 #include <QTreeView>
 #include <QToolBar>
 #include <QMenuBar>
