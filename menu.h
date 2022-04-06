@@ -144,4 +144,8 @@ void populate(QMenuBar *menuBar, QMainWindow *window) {
     window -> connect(connectAction, &QAction::triggered, [=]() {
        openDialog("connect", window);
     });
+
+    window -> connect(aboutAction, &QAction::triggered, [=]() {
+       openDialog("about", window);
+    });
 }
