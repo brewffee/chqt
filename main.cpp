@@ -12,7 +12,6 @@
 #include <QLabel>
 #include <QList>
 
-
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
