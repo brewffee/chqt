@@ -1,16 +1,5 @@
-#include <QStandardItemModel>
-#include <QStandardItem>
-#include <QApplication>
-#include <QMainWindow>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QPushButton>
-#include <QTreeView>
-#include <QToolBar>
-#include <QMenuBar>
-#include <QWidget>
-#include <QLabel>
-#include <QList>
+#include "imports.h"
+#include "menu.h"
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
@@ -20,15 +9,15 @@ int main(int argc, char *argv[]) {
 
     window -> setCentralWidget(&content);
     content.setWindowTitle("chqt");
-    content.resize(1280, 720); 
     content.setMinimumSize(680, 360);
+    content.resize(1280, 720); 
+    window -> resize(1280, 720);
 
     QMenuBar *menuBar = new QMenuBar(window);
     window -> setMenuBar(menuBar);
     menuBar -> setNativeMenuBar(false);
 
-    QMenu *menu = menuBar -> addMenu("Test");
-    QAction *action = menu -> addAction("Test");
+    populate(menuBar, window);
 
     QWidget sidebarL, main, sidebarR;
     QHBoxLayout layout;
@@ -42,7 +31,6 @@ int main(int argc, char *argv[]) {
     QStandardItem *channel = new QStandardItem("Default Channel");
     server -> appendRow(channel);
     model -> appendRow(server);
-
 
     treeView -> setModel(model);
     treeView -> setHeaderHidden(true);
