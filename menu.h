@@ -2,150 +2,150 @@
 #define menu_h 
 #endif
 
-#include "actions.h"
 #include "imports.h"
+#include "modals.h"
 
 void populate(QMenuBar *menuBar, QMainWindow *window) {
-    // FILE MENU
-    QMenu *fileMenu = menuBar -> addMenu("File");
+   // FILE MENU
+   QMenu *fileMenu = menuBar -> addMenu("File");
 
-    QAction *connectAction = fileMenu -> addAction("Connect");
-    connectAction -> setShortcut(QKeySequence("Ctrl+Shift+C"));
+   QAction *connectAction = fileMenu -> addAction("Connect");
+   connectAction -> setShortcut(QKeySequence("Ctrl+Shift+C"));
 
-    QAction *disconnectAction = fileMenu -> addAction("Disconnect");
-    disconnectAction -> setShortcut(QKeySequence("Ctrl+Shift+D"));
+   QAction *disconnectAction = fileMenu -> addAction("Disconnect");
+   disconnectAction -> setShortcut(QKeySequence("Ctrl+Shift+D"));
 
-    QAction *recentAction = fileMenu -> addAction("Recent servers");
+   QAction *recentAction = fileMenu -> addAction("Recent servers");
 
-    fileMenu -> addSeparator();
+   fileMenu -> addSeparator();
 
-    QAction *joinChannelAction = fileMenu -> addAction("Join channel");
-    joinChannelAction -> setShortcut(QKeySequence("Ctrl+Shift+J"));
+   QAction *joinChannelAction = fileMenu -> addAction("Join channel");
+   joinChannelAction -> setShortcut(QKeySequence("Ctrl+Shift+J"));
 
-    QAction *leaveChannelAction = fileMenu -> addAction("Leave channel");
-    leaveChannelAction -> setShortcut(QKeySequence("Ctrl+Shift+L"));
+   QAction *leaveChannelAction = fileMenu -> addAction("Leave channel");
+   leaveChannelAction -> setShortcut(QKeySequence("Ctrl+Shift+L"));
 
-    fileMenu -> addSeparator();
+   fileMenu -> addSeparator();
 
-    QAction *optionAction = fileMenu -> addAction("Options");
-    optionAction -> setShortcut(QKeySequence("Ctrl+O"));
+   QAction *optionAction = fileMenu -> addAction("Options");
+   optionAction -> setShortcut(QKeySequence("Ctrl+O"));
 
-    fileMenu -> addSeparator();
+   fileMenu -> addSeparator();
 
-    QAction *quitAction = fileMenu -> addAction("Quit");
-    quitAction -> setShortcut(QKeySequence("Ctrl+Q"));
+   QAction *quitAction = fileMenu -> addAction("Quit");
+   quitAction -> setShortcut(QKeySequence("Ctrl+Q"));
 
-    // EDIT MENU
-    QMenu *editMenu = menuBar -> addMenu("Edit");
+   // EDIT MENU
+   QMenu *editMenu = menuBar -> addMenu("Edit");
 
-    QAction *undoAction = editMenu -> addAction("Undo");
-    undoAction -> setShortcut(QKeySequence("Ctrl+Z"));
+   QAction *undoAction = editMenu -> addAction("Undo");
+   undoAction -> setShortcut(QKeySequence("Ctrl+Z"));
 
-    QAction *redoAction = editMenu -> addAction("Redo");
-    redoAction -> setShortcut(QKeySequence("Ctrl+Y"));
+   QAction *redoAction = editMenu -> addAction("Redo");
+   redoAction -> setShortcut(QKeySequence("Ctrl+Y"));
 
-    editMenu -> addSeparator();
+   editMenu -> addSeparator();
 
-    QAction *cutAction = editMenu -> addAction("Cut");
-    cutAction -> setShortcut(QKeySequence("Ctrl+X"));
+   QAction *cutAction = editMenu -> addAction("Cut");
+   cutAction -> setShortcut(QKeySequence("Ctrl+X"));
 
-    QAction *copyAction = editMenu -> addAction("Copy");
-    copyAction -> setShortcut(QKeySequence("Ctrl+C"));
+   QAction *copyAction = editMenu -> addAction("Copy");
+   copyAction -> setShortcut(QKeySequence("Ctrl+C"));
 
-    QAction *pasteAction = editMenu -> addAction("Paste");
-    pasteAction -> setShortcut(QKeySequence("Ctrl+V"));
+   QAction *pasteAction = editMenu -> addAction("Paste");
+   pasteAction -> setShortcut(QKeySequence("Ctrl+V"));
 
-    QAction *pasteLastMessageAction = editMenu -> addAction("Paste last message");
-    pasteLastMessageAction -> setShortcut(QKeySequence("Ctrl+Shift+V"));
+   QAction *pasteLastMessageAction = editMenu -> addAction("Paste last message");
+   pasteLastMessageAction -> setShortcut(QKeySequence("Ctrl+Shift+V"));
 
-    editMenu -> addSeparator();
+   editMenu -> addSeparator();
 
-    QAction *selectAllAction = editMenu -> addAction("Select all");
-    selectAllAction -> setShortcut(QKeySequence("Ctrl+A"));
+   QAction *selectAllAction = editMenu -> addAction("Select all");
+   selectAllAction -> setShortcut(QKeySequence("Ctrl+A"));
 
-    // VIEW MENU
-    QMenu *viewMenu = menuBar -> addMenu("View");
+   // VIEW MENU
+   QMenu *viewMenu = menuBar -> addMenu("View");
 
-    QAction *showServerListAction = viewMenu -> addAction("Show server list");
-    showServerListAction -> setShortcut(QKeySequence("Ctrl+Shift+S"));
+   QAction *showServerListAction = viewMenu -> addAction("Show server list");
+   showServerListAction -> setShortcut(QKeySequence("Ctrl+Shift+S"));
 
-    QAction *showMemberListAction = viewMenu -> addAction("Show member list");
-    showMemberListAction -> setShortcut(QKeySequence("Ctrl+Shift+M"));
+   QAction *showMemberListAction = viewMenu -> addAction("Show member list");
+   showMemberListAction -> setShortcut(QKeySequence("Ctrl+Shift+M"));
 
-    viewMenu -> addSeparator();
+   viewMenu -> addSeparator();
 
-    QAction *appearanceAction = viewMenu -> addAction("Appearance");
+   QAction *appearanceAction = viewMenu -> addAction("Appearance");
 
-    viewMenu -> addSeparator();
+   viewMenu -> addSeparator();
 
-    QAction *showTopicAction = viewMenu -> addAction("Show topic");
-    showTopicAction -> setShortcut(QKeySequence("Ctrl+Shift+T"));
+   QAction *showTopicAction = viewMenu -> addAction("Show topic");
+   showTopicAction -> setShortcut(QKeySequence("Ctrl+Shift+T"));
 
-    QAction *showHideBlockedUsersAction = viewMenu -> addAction("Show/hide blocked users");
-    showHideBlockedUsersAction -> setShortcut(QKeySequence("Ctrl+B"));
+   QAction *showHideBlockedUsersAction = viewMenu -> addAction("Show/hide blocked users");
+   showHideBlockedUsersAction -> setShortcut(QKeySequence("Ctrl+B"));
 
-    // BOOKMARKS MENU
-    QMenu *bookmarksMenu = menuBar -> addMenu("Bookmarks");
+   // BOOKMARKS MENU
+   QMenu *bookmarksMenu = menuBar -> addMenu("Bookmarks");
 
-    QAction *addCurServerAction = bookmarksMenu -> addAction("Add current server");
+   QAction *addCurServerAction = bookmarksMenu -> addAction("Add current server");
 
-    QAction *manageBookmarksAction = bookmarksMenu -> addAction("Manage bookmarks");
+   QAction *manageBookmarksAction = bookmarksMenu -> addAction("Manage bookmarks");
 
-    bookmarksMenu -> addSeparator();
-    // get from a data file later
-    QAction *defaultBookmarkAction = bookmarksMenu -> addAction("Default bookmark");
-    defaultBookmarkAction -> setShortcut(QKeySequence("Ctrl+Alt+1"));
+   bookmarksMenu -> addSeparator();
+   // get from a data file later
+   QAction *defaultBookmarkAction = bookmarksMenu -> addAction("Default bookmark");
+   defaultBookmarkAction -> setShortcut(QKeySequence("Ctrl+Alt+1"));
 
-    // TOOLS MENU
-    QMenu *toolMenu = menuBar -> addMenu("Tools");
+   // TOOLS MENU
+   QMenu *toolMenu = menuBar -> addMenu("Tools");
 
-    QAction *updateNicknameAction = toolMenu -> addAction("Update nickname");
+   QAction *updateNicknameAction = toolMenu -> addAction("Update nickname");
 
-    QAction *setAvatarAction = toolMenu -> addAction("Set avatar");
+   QAction *setAvatarAction = toolMenu -> addAction("Set avatar");
 
-    toolMenu -> addSeparator();
+   toolMenu -> addSeparator();
 
-    QAction *blockUserAction = toolMenu -> addAction("Block user");
+   QAction *blockUserAction = toolMenu -> addAction("Block user");
 
-    QAction *friendUserAction = toolMenu -> addAction("Friend user");
+   QAction *friendUserAction = toolMenu -> addAction("Friend user");
 
-    toolMenu -> addSeparator();
+   toolMenu -> addSeparator();
 
-    QAction *clearChatAction = toolMenu -> addAction("Clear chat");
-    
-    toolMenu -> addSeparator();
+   QAction *clearChatAction = toolMenu -> addAction("Clear chat");
+   
+   toolMenu -> addSeparator();
 
-    // MOD MENU
-    QMenu *modMenu = menuBar -> addMenu("Mod");
+   // MOD MENU
+   QMenu *modMenu = menuBar -> addMenu("Mod");
 
-    QAction *kickAction = modMenu -> addAction("Kick");
+   QAction *kickAction = modMenu -> addAction("Kick");
 
-    QAction *banAction = modMenu -> addAction("Ban");
+   QAction *banAction = modMenu -> addAction("Ban");
 
-    QAction *unbanAction = modMenu -> addAction("Unban");
+   QAction *unbanAction = modMenu -> addAction("Unban");
 
-    modMenu -> addSeparator();
+   modMenu -> addSeparator();
 
-    QAction *muteAction = modMenu -> addAction("Mute");
+   QAction *muteAction = modMenu -> addAction("Mute");
 
-    QAction *unmuteAction = modMenu -> addAction("Unmute");
+   QAction *unmuteAction = modMenu -> addAction("Unmute");
 
-    modMenu -> addSeparator();
+   modMenu -> addSeparator();
 
-    QAction *manageChannelAction = modMenu -> addAction("Manage channel");
+   QAction *manageChannelAction = modMenu -> addAction("Manage channel");
 
-    // HELP MENU
-    QMenu *helpMenu = menuBar -> addMenu("Help");
+   // HELP MENU
+   QMenu *helpMenu = menuBar -> addMenu("Help");
 
-    QAction *updateAction = helpMenu -> addAction("Check for updates");
+   QAction *updateAction = helpMenu -> addAction("Check for updates");
 
-    QAction *aboutAction = helpMenu -> addAction("About chqt");
+   QAction *aboutAction = helpMenu -> addAction("About chqt");
 
-    window -> connect(connectAction, &QAction::triggered, [=]() {
-       openDialog("connect", window);
-    });
+   window -> connect(connectAction, &QAction::triggered, [=]() {
+      connectDialog(window);
+   });
 
-    window -> connect(aboutAction, &QAction::triggered, [=]() {
-       openDialog("about", window);
-    });
+   window -> connect(aboutAction, &QAction::triggered, [=]() {
+      aboutDialog(window);
+   });
 }
