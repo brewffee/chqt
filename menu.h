@@ -5,15 +5,23 @@
 #include "imports.h"
 #include "modals.h"
 
+void connect(QMainWindow *window, QAction *action, std::function<void(QMainWindow*)> func) {
+   window -> connect(action, &QAction::triggered, [=]() {
+      func(window);
+   });
+}
+
 void populate(QMenuBar *menuBar, QMainWindow *window) {
    // FILE MENU
    QMenu *fileMenu = menuBar -> addMenu("File");
 
    QAction *connectAction = fileMenu -> addAction("Connect");
    connectAction -> setShortcut(QKeySequence("Ctrl+Shift+C"));
+   connect(window, connectAction, connectDialog);
 
    QAction *disconnectAction = fileMenu -> addAction("Disconnect");
    disconnectAction -> setShortcut(QKeySequence("Ctrl+Shift+D"));
+   disconnectAction -> setEnabled(false);
 
    QAction *recentAction = fileMenu -> addAction("Recent servers");
 
@@ -24,6 +32,7 @@ void populate(QMenuBar *menuBar, QMainWindow *window) {
 
    QAction *leaveChannelAction = fileMenu -> addAction("Leave channel");
    leaveChannelAction -> setShortcut(QKeySequence("Ctrl+Shift+L"));
+   leaveChannelAction -> setEnabled(false);
 
    fileMenu -> addSeparator();
 
@@ -140,12 +149,5 @@ void populate(QMenuBar *menuBar, QMainWindow *window) {
    QAction *updateAction = helpMenu -> addAction("Check for updates");
 
    QAction *aboutAction = helpMenu -> addAction("About chqt");
-
-   window -> connect(connectAction, &QAction::triggered, [=]() {
-      connectDialog(window);
-   });
-
-   window -> connect(aboutAction, &QAction::triggered, [=]() {
-      aboutDialog(window);
-   });
+   connect(window, aboutAction, aboutDialog);
 }
