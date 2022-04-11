@@ -13,7 +13,9 @@
 #include <QTreeView>
 #include <QToolBar>
 #include <QMenuBar>
+#include <QToolTip>
 #include <QWidget>
 #include <QWindow>
 #include <QLabel>
+#include <QTimer>
 #include <QList>
