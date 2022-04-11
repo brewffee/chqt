@@ -24,11 +24,13 @@ void populate(QMenuBar *menuBar, QMainWindow *window) {
    disconnectAction -> setEnabled(false);
 
    QAction *recentAction = fileMenu -> addAction("Recent servers");
+   connect(window, recentAction, recentDialog);
 
    fileMenu -> addSeparator();
 
    QAction *joinChannelAction = fileMenu -> addAction("Join channel");
    joinChannelAction -> setShortcut(QKeySequence("Ctrl+Shift+J"));
+   connect(window, joinChannelAction, joinDialog);
 
    QAction *leaveChannelAction = fileMenu -> addAction("Leave channel");
    leaveChannelAction -> setShortcut(QKeySequence("Ctrl+Shift+L"));

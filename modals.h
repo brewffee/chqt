@@ -4,6 +4,8 @@
 
 // file
 #include "modals/connect.cpp"
+#include "modals/join.cpp"
+#include "modals/recent.cpp"
 
 // edit
 
@@ -17,3 +19,6 @@
 
 // help
 #include "modals/about.cpp"
+
+// other
+// #include "modals/confirmAction.cpp"
