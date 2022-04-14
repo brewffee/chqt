@@ -10,6 +10,7 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QLineEdit>
+#include <QTextEdit>
 #include <QTreeView>
 #include <QToolBar>
 #include <QMenuBar>
@@ -19,3 +20,4 @@
 #include <QLabel>
 #include <QTimer>
 #include <QList>
+
