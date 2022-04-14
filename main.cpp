@@ -1,6 +1,35 @@
 #include "imports.h"
 #include "menu.h"
 
+// used for top bar at the moment
+// will be exported to a separate file
+// and be used for the entire application
+// to allow for easy customization
+const QString stylesheet = " \
+QWidget { \
+    background-color: #f2f2f2; \
+} \
+QWidget[border] { \
+    border: 1px solid #e0e0e0; \
+} \
+QWidget[borderWithNoBrim] { \
+    border-top: none; \
+} \
+QWidget[borderError] { \
+    border: 1px solid #ff0000; \
+} \
+QLineEdit, QLabel { \
+    background-color: #ffffff; \
+}";
+
+void setHeaderWidth(QLineEdit *header) {
+    int textWidth = header -> fontMetrics().horizontalAdvance(header -> text());
+
+    if (textWidth < 240) {
+        header -> setFixedWidth(textWidth + 10);
+    }
+}
+
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
@@ -16,6 +45,7 @@ int main(int argc, char *argv[]) {
     QMenuBar *menuBar = new QMenuBar(window);
     window -> setMenuBar(menuBar);
     menuBar -> setNativeMenuBar(false);
+    menuBar -> setStyleSheet("QMenuBar { background-color: #f2f2f2; border-bottom: 1px solid #e0e0e0; }");
 
     populate(menuBar, window);
 
@@ -54,10 +84,8 @@ int main(int argc, char *argv[]) {
     QWidget topBar, chatArea, inputArea;
     main_layout -> setContentsMargins(0, 0, 0, 0);
     main_layout -> setSpacing(0);
-    topBar.setProperty("background", true);
-
-
     topBar.setProperty("border", true);
+    topBar.setProperty("borderWithNoBrim", true);
 
     // top bar
     QHBoxLayout *topBar_layout = new QHBoxLayout();
@@ -65,17 +93,13 @@ int main(int argc, char *argv[]) {
     QLineEdit *header = new QLineEdit("Default Channel");
     header -> setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     header -> setProperty("border", true);
-
-    int textWidth = header -> fontMetrics().horizontalAdvance(header -> text());
-
-    if (textWidth < 240) {
-        header -> setFixedWidth(textWidth + 10);
-    }
+    setHeaderWidth(header);
 
     QObject::connect(header, &QLineEdit::editingFinished, [=]() {
         // check permissions before changing header
         // for now there is no permission system, default to reject
         header -> setText("Default Channel");
+        setHeaderWidth(header);
         // send permission denied message
     });
 
@@ -101,20 +125,22 @@ int main(int argc, char *argv[]) {
             }
         }
         
-
         // constantly resize the header to fit text, but cap it at a certain size
-        int textWidth = header -> fontMetrics().horizontalAdvance(header -> text());
-
-        if (textWidth < 240) {
-            header -> setFixedWidth(textWidth + 10);
-        }
+        setHeaderWidth(header);
     });
 
     // convert to a QLineEdit next
-    QLabel *topic = new QLabel("Default Topic");
+    QLineEdit *topic = new QLineEdit("Default Topic");
     topic -> setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     topic -> setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     topic -> setProperty("border", true);
+
+    QObject::connect(topic, &QLineEdit::editingFinished, [=]() {
+        // check permissions before changing header
+        // for now there is no permission system, default to reject
+        topic -> setText("Default Topic");
+        // send permission denied message
+    });
 
     QPushButton *button = new QPushButton("Button");
     button -> setFixedWidth(100);
@@ -125,11 +151,10 @@ int main(int argc, char *argv[]) {
     topBar_layout -> addWidget(button);
     topBar_layout -> setAlignment(Qt::AlignVCenter);
 
-    topBar.setStyleSheet(" QWidget[backgroud] { background-color: #f0f0f0; } QWidget[border] { border: 1px solid #e0e0e0;} QWidget[borderError] { border: 1px solid #ff0000;}");
-    
-    topBar_layout -> setContentsMargins(4, 2, 4, 2);
+    topBar.setStyleSheet(stylesheet);
+
     topBar_layout -> setSpacing(2);
-    topBar.setFixedHeight(28);
+    topBar.setFixedHeight(40);
 
     topBar.setLayout(topBar_layout);
 
@@ -137,16 +162,30 @@ int main(int argc, char *argv[]) {
 
     // bottom bar
     QHBoxLayout *inputArea_layout = new QHBoxLayout();
-    // will style later
-    QPushButton *mediaButton = new QPushButton("Media");
-    QPushButton *markdownButton = new QPushButton("Markdown");   
-    QLineEdit *input = new QLineEdit();
-    QPushButton *sendButton = new QPushButton("Send");
 
-    inputArea_layout -> addWidget(mediaButton);
-    inputArea_layout -> addWidget(markdownButton);
+    // toolbar, then input area below it 
+    // input area is a hbox with a textbox and a button
+    QTextEdit *input = new QTextEdit();
+    // set minimum and maximum height
+    input -> setMinimumHeight(28);
+    input -> setMaximumHeight(28);
+
+    //input -> setSizePolicy(QSizePolicy::Expanding, QSizePolicy::MinimumExpanding);
+
+    input -> setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    input -> setProperty("border", true);
+
+    // button, aligned to top right, using icon
+    QPushButton *send = new QPushButton();
+    // set icon from linux icon theme
+    send -> setIcon(QIcon::fromTheme("mail-send"));
+    send -> setIconSize(QSize(14, 14));
+    send -> setFixedSize(28, 28);
+
     inputArea_layout -> addWidget(input);
-    inputArea_layout -> addWidget(sendButton);
+    inputArea_layout -> addWidget(send);
+    inputArea_layout -> setAlignment(Qt::AlignRight | Qt::AlignBottom);
+
 
     inputArea.setLayout(inputArea_layout);
 
@@ -155,6 +194,7 @@ int main(int argc, char *argv[]) {
     main_layout -> addWidget(&inputArea);
 
     main.setLayout(main_layout);
+    main.setProperty("main", true);
 
     main.setStyleSheet("background: #fdfdfd; border-left: 1px solid #e0e0e0; border-right: 1px solid #e0e0e0; padding: 2px;");
     content.setStyleSheet("background: #f2f2f2;");
